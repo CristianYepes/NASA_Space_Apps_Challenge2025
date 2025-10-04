@@ -1,0 +1,508 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+
+   <link rel="stylesheet" type="text/css" href="/js/DHTMLX_4.5Pro/codebase/dhtmlx.css" />
+   <link rel="stylesheet" type="text/css" href="/js/DHTMLX_4.5Pro/codebase/tabbar.css" />
+
+   <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" />
+
+   <link rel="stylesheet" type="text/css" href="/applications/IceTable10.4/iceTable.css" id="tableCSS" />
+   <link rel="stylesheet" type="text/css" href="/applications/TblView10.4/tblView.css" />
+
+   <link rel="stylesheet" type="text/css" media="all" href="/css/style.css" />
+   <link rel="stylesheet" type="text/css" media="all" href="/css/stretch.css" />
+
+   <link rel="stylesheet" type="text/css" media="all" href="/js/ice/IceBlock/css/IceBlock.css" />
+
+   <style>
+      a.overlay:link    { color: lemonchiffon; }
+      a.overlay:visited { color: lemonchiffon; }
+      a.overlay:active  { color: lemonchiffon; }
+      a.overlay:hover   { color: yellow; }
+   </style>
+
+   <script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script> 
+   <script type="text/javascript" src="/js/jquery-ui-1.10.4.custom.min.js"></script> 
+   <script type="text/javascript" src="/js/DHTMLX_4.5Pro/codebase/dhtmlx.js"></script>
+   <script type="text/javascript" src="/js/prototype-1.7.1.js"></script>
+
+   <script type="text/javascript" src="/js/misc/wz_jsgraphics.js"></script>
+   <script type="text/javascript" src="/js/misc/HelpBalloon/src/HelpBalloon.js"></script>
+
+   <script type="text/javascript" src="/js/local/debugwin.js"></script>
+
+   <script type="text/javascript" src="/js/ice/IceBlock/IceBlock.js"></script> 
+
+   <script type="text/javascript" src="/applications/IceTable10.4/iceTable.js"></script>
+   <script type="text/javascript" src="/applications/IceTable10.4/iceTblInterface.js"></script>
+   <script type="text/javascript" src="/applications/TblView10.4/tblView.js"></script>
+
+   <script type="text/javascript" src="/applications/ETSSView10.4/js/ETSDownloadGen.js"></script>
+   <script type="text/javascript" src="/applications/ExoBalloons10.4/js/ExoBalloons.js"></script>
+
+   <script type="text/javascript">
+
+      var tblView;
+
+      function startup()
+      {
+         cssURL = "/applications/ExoTbls/CSS/k2pandcColor.css";
+
+         jQuery.ajax({
+            type: 'HEAD',
+            url: cssURL,
+            success: function() {
+                        oldlink = document.getElementById("tableCSS");
+
+                        newlink = document.createElement("link");
+
+                        newlink.setAttribute("rel", "stylesheet");
+                        newlink.setAttribute("type", "text/css");
+                        newlink.setAttribute("href", "/applications/ExoTbls/CSS/k2pandcColor.css");
+
+                        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+                     }
+         });
+
+         tblView = new TblView ('icetable',
+                                '2025.10.04_06.34.50_031673/TblView/2025.10.04_06.34.50_031673', 
+                                '/cgi-bin/IceTable/nph-iceTbl?log=TblView.ExoplanetArchive',
+                                'k2pandc',
+                                '',
+                                '',
+                                '',
+                                '1');
+
+         tblView.initialConstraints = false;
+
+         tblView.startPreference = '';
+
+         tblView.resetURL = "/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=k2pandc&pref=archive+defaults";
+
+         tblView.version = 'Version ' + '10.4';
+
+         tblView.hdrOffset = 95;
+
+         tblView.enablePreferences = true;
+
+         tblView.init();
+      }
+
+
+      jQuery(window).resize(function () {
+         tblView.resizeVisualization();
+      });
+
+
+      jQuery(function() 
+      {
+         jQuery("#dialog").dialog();
+      });
+
+
+      jQuery(document).ready(function () {
+          startup();
+      });
+
+   </script>
+
+   <title> K2 Planets and Candidates </title>
+
+</head>
+
+<!-- '/cgi-bin/IceTable/nph-iceTbl?log=TblView/ExoplanetArchive', -->
+
+<body>
+
+   <div id='TheHeader'>
+      <!-- START EXO_BANNER.HTML -->
+<link rel="stylesheet" type="text/css" href="/css/navigation.css" />
+<link rel="stylesheet" type="text/css" href="/css/menu_icons.css" />
+
+<script type="text/javascript" src="/js/navigation.js"></script>
+
+<div id="banner">
+ <a href="/index.html"><img src="/images/nsted_banner.jpg" alt="Exoplanet Archive banner" /></a>
+</div> <!-- end banner -->
+
+<!-- begin navigation.html -->
+
+<nav id="exo-hrmenu" class="exo-hrmenu">
+   <ul>
+      <li>
+         <a href="/index.html">Home</a>
+      </li>
+      <li>
+         <a href="/docs/about.html">About Us</a>
+         <div class="exo-hrsub">
+            <div class="exo-hrsub-inner">
+               <div style="width:15%;">
+                  <ul>
+                     <li><a href="/docs/intro.html">
+                         <i class="exoplanet-icon-book-borderless"></i>&nbsp;
+                         Overview</a></li>
+                     <li><a href="/docs/holdings.html">
+                         <i class="exoplanet-icon-book-borderless"></i>&nbsp;
+                         Holdings</a></li>
+                     <li><a href="/docs/counts_detail.html">
+                         <i class="exoplanet-icon-book-borderless"></i>&nbsp;
+                         Exoplanet Counts</a></li>
+                     <li><a href="/docs/users_group.html">
+                         <i class="exoplanet-icon-discussion-borderless"></i>&nbsp;
+                         User Panel</a></li>                         
+                         
+                  </ul>
+               </div>
+               <div style="width:25%;">
+                  <ul>
+                     <li><a href="/docs/faq.html">
+                         <i class="exoplanet-icon-book-borderless"></i>&nbsp;
+                         FAQ</a></li>
+                     <li><a href="/docs/acknowledge.html">
+                         <i class="exoplanet-icon-book-borderless"></i>&nbsp;
+                         Acknowledgements</a></li>
+                     <li><a href="/docs/privacy.html">
+                         <i class="exoplanet-icon-book-borderless"></i>&nbsp;
+                         Privacy Notice</a></li>
+                  </ul>
+               </div>
+            </div><!-- /exo-hrsub-inner -->
+         </div><!-- /exo-hrsub -->
+      </li>
+      <li>
+         <a href="/docs/data.html">Data</a>
+         <div class="exo-hrsub">
+            <div class="exo-hrsub-inner">
+               <div style="width:16%;">
+                  <h4>Planetary Systems</h4>
+                  <ul>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PS">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         Planetary Systems</a></li>
+					 <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=PSCompPars">
+					     <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+						 Planetary Systems Composite Data</a></li>
+					 <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=STELLARHOSTS">
+					     <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+						 Stellar Hosts</a></li>
+                      <li><a href="/cgi-bin/atmospheres/nph-firefly?atmospheres">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                        Atmospheric Spectroscopy</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=ML">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+
+                         Microlensing Planets</a></li>
+                    <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=directimaging&constraint=immodeldef=1">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         Direct Imaging Planets</a></li>
+                    <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=TD">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         Transiting Planets</a></li>                         
+                  </ul>
+               </div>
+               <div style="width:20%;">
+                  <h4>Kepler</h4>
+                  <ul>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         KOI (Cumulative List)</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=koi">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         KOI (All Lists)</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=koiapp&constraint=pp_host_prob_score>0.3">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         Positional Probabilities</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=koifpp">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         False Positive Probabilities</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=fpwg">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                        Certified False Positives</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=tce">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         Threshold-Crossing Events</a></li>
+                     <li><a href="/docs/Kepler_completeness_reliability.html">
+                         <i class="exoplanet-icon-book-borderless"></i>&nbsp;
+                         Completeness and Reliability</a></li>
+                     <li><a href="/docs/KeplerSimulated.html">
+                         <i class="exoplanet-icon-book-borderless"></i>&nbsp;
+                         Simulated Data</a></li>                           
+                     <li><a href="/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=keplerstellar">
+                         <i class="exoplanet-icon-search-borderless"></i>&nbsp;
+                         Kepler Stellar</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=kep_conf_names">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         Kepler Confirmed Names</a></li>
+                  </ul>
+               </div>
+               <div style="width:20%;">
+                  <h4>Transit Surveys</h4>
+                  <ul>
+				  	 <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=TOI">
+					 	<i class="exoplanet-icon-table-borderless"></i>&nbsp;
+					 	TESS Project Candidates</a>
+					 </li>
+                     <li><a href="/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=k2targets">
+                         <i class="exoplanet-icon-search-borderless"></i>&nbsp;
+                         K2 Targets</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=k2pandc">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         K2 Planets and Candidates</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=k2_conf_names">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         K2 Confirmed Names</a></li>
+                     <li><a href="/applications/ETSS/CoRoT_astero_index.html">
+                         <i class="exoplanet-icon-search-borderless"></i>&nbsp;
+                         CoRot Astero-Seismology</a></li>
+                     <li><a href="/applications/ETSS/CoRoT_exo_index.html">
+                         <i class="exoplanet-icon-search-borderless"></i>&nbsp;
+                         CoRoT Exoplanet</a></li>
+                     <li><a href="/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=superwasptimeseries">
+                         <i class="exoplanet-icon-search-borderless"></i>&nbsp;
+                         SuperWASP Light Curves</a></li>
+                     <li><a href="/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=kelttimeseries">
+                         <i class="exoplanet-icon-search-borderless"></i>&nbsp;
+                         KELT Light Curves</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ETSSView&config=conf/KELTP">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         KELT Praeseppe</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ETSSView&config=conf/XO">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         XO</a></li>
+                     <li><a href="/applications/ETSS/HATNet_index.html">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         HATNet</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ETSSView&config=conf/Cluster">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         Cluster</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ETSSView&config=conf/TrES">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         TrES</a></li>
+                  </ul>
+               </div>
+               <div style="width:29%;">
+                  <h4>Other</h4>
+                  <ul>
+                     <li><a href="/cgi-bin/TblSearch/nph-tblSearchInit?app=ExoTbls&config=ukirttimeseries">
+                         <i class="exoplanet-icon-search-borderless"></i>&nbsp;
+                         UKIRT Microlensing Survey</a></li>
+                    <li><a href="/cgi-bin/MOA/nph-firefly?MOA">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         MOA Microlensing Survey</a></li>
+                    <li><a href="/cgi-bin/ROME/nph-firefly?data&filter=True">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         ROME/REA Microlensing Survey</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=gjstars">
+                      <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         Gliese-Jahreiss Stars</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=DI_STARS_EXEP">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         HWO ExEP Precursor Science Stars</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=missionstars">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         Mission Stars</a></li>
+                     <li><a href="/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=mission_exocat">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         Mission Stars+ExoCat</a></li>
+	    			 <li><a href="/cgi-bin/FDL/nph-fdl">
+					 	 <i class="exoplanet-icon-table-borderless"></i>&nbsp;
+                         Frontier Development Lab Datasets</a></li>
+	    	     <li><a href="/cgi-bin/CUBESAT/nph-cubesat?cute">
+                         <i class="exoplanet-icon-table-borderless"></i>&nbsp; 
+                          CUTE Mission</a></li>
+	    	     <li><a href="/docs/ASTERIAMission.html">
+                         <i class="exoplanet-icon-observatory-borderless"></i>&nbsp; 
+                          ASTERIA Mission</a></li>                      
+                     <li><a href="/docs/contributed_data.html">
+                         <i class="exoplanet-icon-observatory-borderless"></i>&nbsp;
+                         Contributed Data Sets</a></li>
+                     <li><a href="/applications/ExoTbls/upload.html">
+                         <i class="exoplanet-icon-search-borderless"></i>&nbsp;
+                         Interactive Tables Search and File Upload</a></li>
+                  </ul>
+               </div>
+            </div><!-- /exo-hrsub-inner -->
+            &nbsp;<p/><center><i class="exoplanet-icon-table-borderless"></i>&nbsp;&nbsp; <i>Full table display</i>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="exoplanet-icon-search-borderless"></i>&nbsp;&nbsp;<i>Database search</i></center><p/>
+         </div><!-- /exo-hrsub -->
+      </li>
+      <li>
+         <a href="/docs/tools.html">Tools</a>
+         <div class="exo-hrsub">
+            <div class="exo-hrsub-inner">
+               <div style="width:35%;">
+                  <ul>
+                     <li><a href="/applications/Inventory/search.html">
+                         <i class="exoplanet-icon-book-borderless"></i>&nbsp;
+                         Explore the Archive</a></li>
+                     <li><a href="/applications/ExoTbls/upload.html">
+                         <i class="exoplanet-icon-search-borderless"></i>&nbsp;
+                         Interactive Table Search and File Upload</a></li>
+                     <li><a href="/cgi-bin/TransitView/nph-visibletbls?dataset=transits">
+                         <i class="exoplanet-icon-transit-borderless"></i>&nbsp;
+                         Transit and Ephemeris Service</a></li>
+                     <li><a href="/cgi-bin/CalcQty/nph-calcqty">
+                         <i class="exoplanet-icon-transit-borderless"></i>&nbsp;
+                         Predicted Observables for Exoplanets (POE)</a></li>
+                     <li><a href="/cgi-bin/Pgram/nph-pgram">
+                         <i class="exoplanet-icon-plot-borderless"></i>&nbsp;
+                         Periodogram</a></li>
+                     <!-- <li><a href="/cgi-bin/Periodogram/nph-simpleupload">
+                         <i class="exoplanet-icon-plot-borderless"></i>&nbsp;
+                         Periodogram</a></li> -->
+                     <li><a href="/cgi-bin/IcePlotter/nph-icePlotInit?mode=demo&set=confirmed">
+                         <i class="exoplanet-icon-plot-simple-borderless"></i>&nbsp;
+                         Confirmed Planets Plotting Tool</a></li>
+				     <li><a href="/cgi-bin/ExoFAST/nph-exofast">
+					     <i class="exoplanet-icon-transit-borderless"></i>&nbsp;
+						 EXOFAST: Transit and RV Fitting</a></li>
+                  </ul>
+               </div>
+               <div style="width:50%">
+                  <ul>
+                     <li><a href="/docs/TAP/usingTAP.html">
+                         <i class="exoplanet-icon-api-search-borderless"></i>&nbsp;
+                        Table Access Protocol (TAP) Interface</a></li>
+                     <li><a href="/docs/program_interfaces.html">
+                         <i class="exoplanet-icon-api-search-borderless"></i>&nbsp;
+                         Application Programming Interface (API)</a></li>
+                     <li><a href="/bulk_data_download">
+                         <i class="exoplanet-icon-download-borderless"></i>&nbsp;
+                         Bulk Data Download</a></li>
+                     <li><a href="https://exofop.ipac.caltech.edu/">
+                         <i class="exoplanet-icon-observatory-borderless"></i>&nbsp;
+                         ExoFOP</a></li>
+                     <li><a href="/exoplanetplots/">
+                         <i class="exoplanet-icon-plot-borderless"></i>&nbsp;
+                         Pre-generated Plots</a></li>                         
+                  </ul>
+               </div>
+            </div><!-- /exo-hrsub-inner -->
+         </div><!-- /exo-hrsub -->
+      </li>
+      <li>
+         <a href="/docs/help.html">Support</a>
+         <div class="exo-hrsub">
+            <div class="exo-hrsub-inner">
+               <div style="width:25%;">
+                  <ul>
+                     <li><a href="/applications/DocSet/index.html?doctree=/docs/docmenu.xml&startdoc=item_1_01">
+                         <i class="exoplanet-icon-book-borderless"></i>&nbsp;
+                         Documentation Index</a></li>
+                     <li><a href="/docs/KeplerMission.html">
+                         <i class="exoplanet-icon-book-borderless"></i>&nbsp;
+                         Kepler Documentation</a></li>
+                  </ul>
+               </div>
+               <div style="width:30%;">
+                  <ul>
+                     <li><a href="/docs/connect.html">
+                         <i class="exoplanet-icon-discussion-borderless"></i>&nbsp;
+                         Social Media and Newsletter</a></li>
+                     <li><a href="/applications/Helpdesk" target="_blank">
+                         <i class="exoplanet-icon-discussion-borderless"></i>&nbsp;
+                         Contact Us</a></li>
+                  </ul>
+               </div>
+            </div><!-- /exo-hrsub-inner -->
+         </div><!-- /exo-hrsub -->
+      </li>
+      <li>
+         <span style="font-weight: bold; cursor: pointer; padding: 3px 1.5em;" id="loginID">-</span>
+      </li>
+  </ul>
+</nav>
+<!-- end navigation.html --> 
+
+<!-- END EXO_BANNER.HTML -->
+
+   </div>
+
+   <!-- Main table display.  Most of the action goes on in here. -->
+
+   <div id='icetable' style="position:relative;width:100%;height:800px;overflow:hidden;">
+   </div>
+
+
+   <!-- Named preferences selection dialog -->
+
+   <div id="namedPref" title="Preferences" style="position: relative; float: left; width:615px; height:350px">
+      <div style="border: 0px solid black; display: inline-block; width: 100%;">
+
+      <div id="prefIDs" style="visibility: hidden; height: 0px;">
+         Current: <span id="currentPreference" style="color: red;"><i>default</i></span><br/>
+         Default: <span id="defaultPreference" style="color: red;"><i>default</i></span>
+      </div>
+
+      <table id="prefHdr" style="width: 100%; border: 0px solid red;"><tr>
+         <td style="text-align: left;">
+            <div id="cbBtns">
+               <button type="button" id="prefSelectBtn" onclick="jQuery('.prefCheckbox').prop('checked', true);" >Check All</button>
+               <button type="button" id="prefClearBtn"  onclick="jQuery('.prefCheckbox').prop('checked', false);">Clear Checked</button>
+               <button type="button" id="prefDeleteBtn" onclick="tblView.deletePrefs();"                         >Delete Checked</button>
+            </div>
+         </td>
+         <td style="text-align: right;">
+            <div id="defaultColLabel" style="border: 0px solid blue;"><i>Default&nbsp;&nbsp;&nbsp;&nbsp;</i></span></div>
+      </tr></table>
+
+      <div style="border: 0px solid black; height: 100px; width: 100%; display: inline-block; overflow-x: hidden; overflow-y: auto;">
+         <div id="prefSelect" class="pref" style="overflow-x: auto;"></div>
+      </div>
+
+      <center>
+         <div id="prefManageMessage" style="width: 300px; text-align: left;">
+            <div style="height: 5px;"></div>
+
+            Select one and rename or make it the default.<br/>
+            Select one or more and delete.<br/>
+         </div>
+
+         <table id="prefNameField" style="width: 100%;">
+            <tr>
+               <td style="text-align: center;">Save/Rename: <span id="prefNewName"><input type="text" id="newPreferenceName" size="30"/></span></td>
+            </tr>
+         </table>
+         </div>
+
+         <div style="text-align: center; border: 0px solid green;">
+            <div style="height: 5px;"></div>
+
+            <button type="button" id="newPreference" onclick="tblView.prefManage('save');"  >Save New</button>
+            <button type="button" id="prefRenameBtn" onclick="tblView.prefManage('rename');">Rename Checked</button>
+            <button type="button" id="prefOKBtn"     onclick="tblView.selectPref('');"      >OK</button>
+            <span id="btnSpacer" style="border: 0px solid red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <button type="button" id="prefCancelBtn" onclick="jQuery('#namedPref').dialog('close');" >Close</button>
+         </div>
+      </center>
+
+   </div> <!-- of namedPref -->
+
+
+   <!-- Warning dialog for removing preferences -->
+   
+   <div id="deleteWarning" title="Warning" style="position: relative; float: left; width:200px; height:120px">
+
+      <center>
+         <span>Deleting a preference is unrecoverable.<br/>
+               Do you wish to continue?</span><p/>
+
+         <input type="checkbox" onclick="tblView.deletePrefsFinal('deleteImmediate');"/> Do not ask again.<p/>
+
+         <div style="text-align: center; border: 0px solid green;">
+            <div style="height: 5px;"></div>
+            <button type="button" id="deleteOKBtn"  onclick="tblView.deletePrefsFinal('delete');">OK</button>
+            <button type="button" id="deleteCancel" onclick="jQuery('#deleteWarning').dialog('close');" >Cancel</button>
+         </div>
+      </center>
+
+   </div> <!-- of deleteWarning -->
+
+
+   <div id="helpDialog" title="Help"><div id="helpDialogText">Table viewer help.</div></div>
+
+</body>
+</html>
