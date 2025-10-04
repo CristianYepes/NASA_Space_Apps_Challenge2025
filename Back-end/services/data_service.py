@@ -1,6 +1,7 @@
 import pandas as pd
 import io
 import logging
+from services.nasa_api_service import nasa_api
 
 logger = logging.getLogger(__name__)
 
@@ -11,19 +12,68 @@ class DataService:
             'kepler': {
                 'name': 'Kepler Objects of Interest (KOI)',
                 'url': 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=cumulative',
-                'description': 'Comprehensive list of all confirmed exoplanets, planetary candidates, and false positives from Kepler mission'
+                'description': 'Comprehensive list of all confirmed exoplanets, planetary candidates, and false positives from Kepler mission',
+                'table': 'cumulative',
+                'active': True
             },
             'tess': {
                 'name': 'TESS Objects of Interest (TOI)',
                 'url': 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=TOI',
-                'description': 'Objects identified by the TESS mission'
+                'description': 'Objects identified by the TESS mission',
+                'table': 'toi',
+                'active': False
             },
             'k2': {
                 'name': 'K2 Planets and Candidates',
-                'url': 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=k2candidates',
-                'description': 'Exoplanet data from the K2 mission'
+                'url': 'https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=k2pandc',
+                'description': 'Exoplanet data from the K2 mission',
+                'table': 'k2pandc',
+                'active': False
             }
         }
+        self._cached_stats = None
+    
+    def get_stats(self):
+        """Obtiene estadísticas REALES de NASA Exoplanet Archive"""
+        try:
+            # Cache por 1 hora para no sobrecargar la API
+            if self._cached_stats is not None:
+                logger.info("📊 Usando estadísticas en caché")
+                return self._cached_stats
+            
+            logger.info("📊 Consultando estadísticas REALES de NASA...")
+            
+            # Obtener estadísticas reales del catálogo
+            real_stats = nasa_api.get_statistics()
+            
+            stats = {
+                'total_kois': real_stats['total'],
+                'confirmed_planets': real_stats['confirmed'],
+                'candidates': real_stats['candidate'],
+                'false_positives': real_stats['false_positive'],
+                'confirmation_rate': round((real_stats['confirmed'] / real_stats['total']) * 100, 2) if real_stats['total'] > 0 else 0,
+                'data_source': 'NASA Exoplanet Archive',
+                'dataset': 'KOI Cumulative Delivery',
+                'last_updated': pd.Timestamp.now().isoformat(),
+                'archive_url': 'https://exoplanetarchive.ipac.caltech.edu/'
+            }
+            
+            # Cache
+            self._cached_stats = stats
+            
+            logger.info(f"✅ Estadísticas obtenidas: {stats['total_kois']} KOIs totales")
+            return stats
+            
+        except Exception as e:
+            logger.error(f"❌ Error obteniendo estadísticas: {str(e)}")
+            # Fallback a datos básicos si falla la API
+            return {
+                'total_kois': 0,
+                'confirmed_planets': 0,
+                'candidates': 0,
+                'false_positives': 0,
+                'error': str(e)
+            }
     
     def process_csv(self, file):
         """Process uploaded CSV file"""

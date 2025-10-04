@@ -15,6 +15,12 @@ function App() {
   const [predictions, setPredictions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  
+  // Estado del planeta 3D (se actualiza con las predicciones)
+  const [planetData, setPlanetData] = useState({
+    radius: 2.26,
+    temperature: 793
+  });
 
   useEffect(() => {
     loadModelStats();
@@ -36,6 +42,14 @@ function App() {
 
   const handlePrediction = (newPrediction) => {
     setPredictions(prev => [newPrediction, ...prev]);
+    
+    // Actualizar planeta 3D con los datos de la predicción
+    if (newPrediction.input) {
+      setPlanetData({
+        radius: newPrediction.input.koi_prad || 2.26,
+        temperature: newPrediction.input.koi_teq || 793
+      });
+    }
   };
 
   const renderContent = () => {
@@ -59,8 +73,11 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-space-dark via-indigo-950 to-purple-950">
-      {/* Planeta 3D animado en el fondo */}
-      <Planet3D />
+      {/* Planeta 3D animado en el fondo - SE ACTUALIZA CON LAS PREDICCIONES */}
+      <Planet3D 
+        planetRadius={planetData.radius} 
+        temperature={planetData.temperature}
+      />
       
       {/* Animated stars background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">

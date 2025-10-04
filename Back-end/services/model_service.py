@@ -7,6 +7,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import joblib
 import os
 import logging
+from services.nasa_api_service import nasa_api
 
 logger = logging.getLogger(__name__)
 
@@ -48,19 +49,29 @@ class ModelService:
         logger.info("Model and scaler saved successfully")
     
     def train_model(self, config=None):
-        """Train the model with sample data or provided configuration"""
+        """Train the model with REAL NASA data from Exoplanet Archive"""
         try:
             if config:
                 self.update_hyperparameters(config)
             
-            # Generate sample training data (in production, load from NASA datasets)
-            X_train, X_test, y_train, y_test = self._generate_sample_data()
+            logger.info("🚀 Descargando datos REALES de NASA Exoplanet Archive...")
+            
+            # Obtener datos reales de NASA (KOIs con características completas)
+            X, y = nasa_api.get_training_data(sample_size=2000)
+            
+            # Split train/test
+            X_train, X_test, y_train, y_test = train_test_split(
+                X, y, test_size=0.2, random_state=42, stratify=y
+            )
+            
+            logger.info(f"📊 Dataset: {len(X_train)} entrenamiento, {len(X_test)} prueba")
             
             # Scale features
             X_train_scaled = self.scaler.fit_transform(X_train)
             X_test_scaled = self.scaler.transform(X_test)
             
             # Train model
+            logger.info("🤖 Entrenando Random Forest con datos de NASA...")
             self.model = RandomForestClassifier(**self.hyperparameters)
             self.model.fit(X_train_scaled, y_train)
             
@@ -76,71 +87,19 @@ class ModelService:
                 'training_samples': len(X_train),
                 'features_used': self.feature_columns,
                 'last_trained': pd.Timestamp.now().isoformat(),
-                'confusion_matrix': self._format_confusion_matrix(confusion_matrix(y_test, y_pred))
+                'confusion_matrix': self._format_confusion_matrix(confusion_matrix(y_test, y_pred)),
+                'data_source': 'NASA Exoplanet Archive (cumulative table)',
+                'data_url': 'https://exoplanetarchive.ipac.caltech.edu/'
             }
             
             # Save model
             self.save_model()
             
-            logger.info(f"Model trained successfully. Accuracy: {self.stats['accuracy']:.4f}")
+            logger.info(f"✅ Modelo entrenado con datos REALES de NASA. Precisión: {self.stats['accuracy']:.4f}")
             
         except Exception as e:
-            logger.error(f"Training error: {str(e)}")
+            logger.error(f"❌ Error entrenando modelo: {str(e)}")
             raise
-    
-    def _generate_sample_data(self):
-        """Generate sample training data (replace with real NASA data loading)"""
-        np.random.seed(42)
-        
-        # Sample size
-        n_samples = 5000
-        
-        # Generate features
-        data = {
-            'koi_period': np.random.exponential(10, n_samples),
-            'koi_duration': np.random.gamma(2, 2, n_samples),
-            'koi_prad': np.random.lognormal(0, 0.5, n_samples),
-            'koi_teq': np.random.normal(1000, 300, n_samples),
-            'koi_insol': np.random.exponential(50, n_samples),
-            'koi_depth': np.random.exponential(500, n_samples),
-            'koi_impact': np.random.uniform(0, 1, n_samples),
-            'koi_model_snr': np.random.exponential(50, n_samples)
-        }
-        
-        df = pd.DataFrame(data)
-        
-        # Generate labels (CONFIRMED, CANDIDATE, FALSE POSITIVE)
-        # Based on simplified rules
-        labels = []
-        for idx, row in df.iterrows():
-            score = 0
-            if row['koi_prad'] < 2:
-                score += 1
-            if row['koi_period'] < 50:
-                score += 1
-            if row['koi_model_snr'] > 20:
-                score += 1
-            if row['koi_depth'] > 100:
-                score += 1
-                
-            if score >= 3:
-                labels.append('CONFIRMED')
-            elif score >= 2:
-                labels.append('CANDIDATE')
-            else:
-                labels.append('FALSE POSITIVE')
-        
-        # Add some randomness
-        labels = np.array(labels)
-        noise_idx = np.random.choice(n_samples, size=int(n_samples * 0.1), replace=False)
-        for idx in noise_idx:
-            labels[idx] = np.random.choice(['CONFIRMED', 'CANDIDATE', 'FALSE POSITIVE'])
-        
-        X_train, X_test, y_train, y_test = train_test_split(
-            df, labels, test_size=0.2, random_state=42
-        )
-        
-        return X_train, X_test, y_train, y_test
     
     def _format_confusion_matrix(self, cm):
         """Format confusion matrix for API response"""

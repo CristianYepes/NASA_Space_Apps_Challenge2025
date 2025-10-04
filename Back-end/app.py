@@ -144,6 +144,17 @@ def get_datasets():
         logger.error(f"Dataset error: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/stats', methods=['GET'])
+def get_data_stats():
+    """Get REAL statistics from NASA Exoplanet Archive"""
+    try:
+        stats = data_service.get_stats()
+        return jsonify(stats), 200
+        
+    except Exception as e:
+        logger.error(f"Stats error: {str(e)}")
+        return jsonify({'error': str(e)}), 500
+
 @app.route('/api/history', methods=['GET'])
 def get_history():
     """Get prediction history"""
