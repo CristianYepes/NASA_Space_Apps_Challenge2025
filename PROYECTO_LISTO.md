@@ -45,9 +45,16 @@ Este proyecto está **100% listo** para hacer push y merge. No necesitas tocar n
   - data_loader.py
 
 ### ✅ Instalación Automática
-- **UN SOLO ARCHIVO**: `INICIO.bat`
+- **DOS ARCHIVOS (uno por OS)**:
+  - `INICIO.bat` - Para Windows
+  - `setup.sh` - Para Linux/Ubuntu/Mac
 - **Cero interacción del usuario**
-- Doble click y listo
+- Un doble click (Windows) o un comando (Linux/Mac) y listo
+- Detecta e instala Python/Node.js automáticamente
+- Configura todo
+- Entrena el modelo
+- Lanza la aplicación
+- Abre el navegador
 - Detecta e instala Python/Node.js automáticamente
 - Configura todo
 - Entrena el modelo

@@ -68,30 +68,38 @@ This project provides a complete solution for exoplanet detection and classifica
 
 ## 📦 Installation & Setup
 
-### 🚀 Instalación AUTOMÁTICA (Windows) - ⭐ RECOMENDADO
+### 🚀 Instalación AUTOMÁTICA - ⭐ RECOMENDADO
 
+#### Windows
 **¡SÚPER FÁCIL! Un solo doble click y listo**
 
 ```bash
 Doble click en: INICIO.bat
 ```
 
+#### Linux / Ubuntu / Mac
+**¡IGUAL DE FÁCIL! Un solo comando**
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
 ✨ **Eso es todo!** El script automáticamente:
 - ✅ Detecta si tienes Python y Node.js instalados
-- ✅ Los instala si no los tienes (usando Chocolatey)
+- ✅ Los instala si no los tienes
 - ✅ Configura el Backend y Frontend
 - ✅ Entrena el modelo de Machine Learning
 - ✅ Inicia ambos servidores
 - ✅ Abre tu navegador en http://localhost:3000
 
-**No necesitas hacer NADA más. Literal, doble click y ya.**
+**No necesitas hacer NADA más. Literal, un comando/click y ya.**
 
 ---
 
 ### 🛠️ Instalación Manual (Todas las plataformas)
 
-Si prefieres hacerlo manualmente o estás en Linux/Mac:
-
+Si prefieres hacerlo manualmente:
 
 #### Requisitos Previos
 - Node.js 16+ and npm
