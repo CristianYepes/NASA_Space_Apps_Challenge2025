@@ -6,6 +6,7 @@ import ManualInput from './components/ManualInput';
 import ModelStats from './components/ModelStats';
 import ResultsDisplay from './components/ResultsDisplay';
 import HyperparameterTuning from './components/HyperparameterTuning';
+import Planet3D from './components/Planet3D';
 import { exoplanetService } from './services/api';
 
 function App() {
@@ -58,6 +59,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-space-dark via-indigo-950 to-purple-950">
+      {/* Planeta 3D animado en el fondo */}
+      <Planet3D />
+      
       {/* Animated stars background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         {[...Array(50)].map((_, i) => (
