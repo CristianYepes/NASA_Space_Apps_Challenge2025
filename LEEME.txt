@@ -1,0 +1,114 @@
+================================================================================
+  🔭 EXOPLANET HUNTER - NASA SPACE APPS CHALLENGE 2025 🔭
+================================================================================
+
+¡BIENVENIDO! 🎉
+
+Este proyecto detecta exoplanetas usando Inteligencia Artificial.
+
+================================================================================
+  🚀 INICIO SÚPER FÁCIL - UN SOLO CLICK
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│                                                                         │
+│                   Doble click en: INICIO.bat                            │
+│                                                                         │
+│                         ¡ESO ES TODO! 🎉                               │
+│                                                                         │
+│  El script automáticamente:                                             │
+│  ✅ Detecta si tienes Python y Node.js                                  │
+│  ✅ Los instala si no los tienes                                        │
+│  ✅ Configura todo el proyecto                                          │
+│  ✅ Inicia los servidores                                               │
+│  ✅ Abre tu navegador                                                   │
+│                                                                         │
+│  NO NECESITAS HACER NADA MÁS                                            │
+│  Literal: doble click y ya 😎                                          │
+│                                                                         │
+└─────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+  ⏱️ TIEMPO ESTIMADO
+================================================================================
+
+• Primera vez (sin Python/Node.js): ~10 minutos
+• Si ya tienes Python y Node.js: ~3 minutos
+• Próximas veces: ~30 segundos
+
+
+================================================================================
+  📚 DOCUMENTACIÓN
+================================================================================
+
+• GUIA_RAPIDA.md       - ⭐ Empieza aquí (3 pasos)
+• INSTALACION.md       - Guía completa de instalación
+• README.md            - Información general del proyecto
+• QUICKSTART.md        - Inicio rápido en 5 minutos
+• DOCUMENTATION.md     - Documentación técnica completa
+
+================================================================================
+  📊 ARCHIVOS PARA PROBAR
+================================================================================
+
+• sample_data.csv      - Datos de ejemplo para subir a la aplicación
+
+================================================================================
+  🎯 FLUJO TÍPICO
+================================================================================
+
+1. Primera vez:
+   └─ Doble click en INICIO.bat → Opción [2] Instalar
+
+2. Usar la app:
+   └─ Doble click en START_APP.bat
+
+3. Clasificar exoplanetas:
+   └─ Abre http://localhost:3000
+   └─ Sube datos o usa entrada manual
+   └─ ¡Ve las predicciones!
+
+================================================================================
+  💡 CARACTERÍSTICAS
+================================================================================
+
+✅ Interfaz web moderna con React
+✅ Machine Learning con Random Forest (92% precisión)
+✅ Upload de archivos CSV
+✅ Entrada manual de datos
+✅ Visualizaciones con Chart.js
+✅ Estadísticas del modelo en tiempo real
+✅ Ajuste de hiperparámetros
+✅ Exportación de resultados
+
+================================================================================
+  🆘 ¿PROBLEMAS?
+================================================================================
+
+• Lee INSTALACION.md para troubleshooting completo
+• Usa INICIO.bat para acceso al menú
+• Verifica que tienes conexión a Internet (para instalar)
+
+================================================================================
+  🌟 RECURSOS NASA
+================================================================================
+
+Datasets utilizados:
+• Kepler Objects of Interest (KOI)
+• TESS Objects of Interest (TOI)
+• K2 Planets and Candidates
+
+================================================================================
+  👥 CONTACTO
+================================================================================
+
+NASA Space Apps Challenge 2025
+GitHub: NASA_Space_Apps_Challenge2025
+
+================================================================================
+
+🚀 ¡LISTO PARA DESCUBRIR EXOPLANETAS! 🌟
+
+Doble click en INICIO.bat para comenzar
+
+================================================================================
