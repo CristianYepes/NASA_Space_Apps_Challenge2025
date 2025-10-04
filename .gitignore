@@ -224,3 +224,7 @@ credentials.json
 # *.pdf
 # *.zip
 # *.tar.gz
+
+
+# Project data directories
+exoplanet_data/
