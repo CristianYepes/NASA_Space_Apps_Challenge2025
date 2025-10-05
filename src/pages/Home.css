@@ -1,6 +1,8 @@
 .home {
   background: transparent;
   min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   color: white;
 }
 
@@ -23,6 +25,10 @@
   gap: 4rem;
   align-items: center;
   text-align: center;
+}
+
+.with-aside {
+  grid-template-columns: 1fr;
 }
 
 .header-content {
@@ -82,6 +88,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 15px;
   padding: 1.5rem;
+  margin-left: -1rem; /* mueve la card ligeramente a la izquierda */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
@@ -108,7 +115,7 @@
 
 .planet-showcase {
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 480px 1fr; /* más anchura para separar la card del planeta */
   gap: 3rem;
   align-items: center;
   width: 100%;
@@ -116,12 +123,71 @@
   padding: 2rem 0;
 }
 
+.content-with-aside {
+  display: block;
+}
+
+.main-column { width: 100%; padding-right: 440px; }
+
+.ranking-aside {
+  position: fixed;
+  top: 10rem;
+  right: 2rem;
+  width: 400px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 1rem;
+  max-height: calc(100vh - 12rem);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  z-index: 300;
+}
+
+.ranking-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.ranking-table-wrapper {
+  overflow: auto;
+  max-height: calc(100vh - 14rem);
+}
+
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.ranking-table th,
+.ranking-table td {
+  padding: 0.75rem 0.75rem; /* mayor altura */
+  line-height: 1.6;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ranking-table th {
+  cursor: default;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, rgba(102,126,234,0.25), rgba(118,75,162,0.25));
+  color: #ffffff;
+}
+
+.ranking-table .top-row { background: rgba(102, 126, 234, 0.18); font-weight: 600; }
+
 /* Media Queries para responsive */
-@media (max-width: 1024px) {
+@media (max-width: 1400px) {
   .hero-content {
     gap: 3rem;
     padding: 1rem;
   }
+  .main-column { padding-right: 0; }
+  /* En pantallas medianas el aside deja de ser fixed para no superponerse */
+  .ranking-aside { position: static; right: auto; width: 100%; max-height: none; margin: 1rem 0 0 0; }
   
   .header-content {
     margin-bottom: 2rem;
@@ -138,6 +204,7 @@
   }
   
   .planet-showcase {
+    grid-template-columns: 1fr; /* apilado */
     gap: 1.5rem;
     padding: 1rem 0;
   }
@@ -226,10 +293,13 @@
 }
 
 .planet-selection h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin-bottom: 1.5rem;
   color: white;
   text-align: center;
+  white-space: normal; /* mostrar nombre completo */
+  overflow: visible;
+  text-overflow: clip;
 }
 
 .radio-group {

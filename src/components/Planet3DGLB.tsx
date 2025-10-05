@@ -80,7 +80,7 @@ const Planet3DGLB: React.FC<Planet3DGLBProps> = ({
               field-of-view="${fieldOfView}"
               camera-target="0m 0m 0m"
               interaction-policy="always-allow"
-              auto-rotate-delay="1000"
+              auto-rotate-delay="0"
               ${autoRotate ? 'auto-rotate' : ''}
               rotation-per-second="${rotationSpeed * 30}deg"
               interpolation-decay="200"

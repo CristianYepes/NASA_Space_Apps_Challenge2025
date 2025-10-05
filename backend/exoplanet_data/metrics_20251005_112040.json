@@ -1,0 +1,40 @@
+{
+  "timestamp": "20251005_112040",
+  "labeling_strategy": "thresholds",
+  "n_planets": 23150,
+  "best_model": "GradientBoosting",
+  "models": {
+    "RandomForest": {
+      "test_accuracy": 0.9775377969762419,
+      "test_balanced_accuracy": 0.8143769665276404,
+      "cv_mean_accuracy": 0.9711663327657272,
+      "cv_std_accuracy": 0.0006861732760956499,
+      "cv_mean_balanced_accuracy": 0.8497140470735021,
+      "cv_std_balanced_accuracy": 0.03842116668487202
+    },
+    "GradientBoosting": {
+      "test_accuracy": 0.9840172786177106,
+      "test_balanced_accuracy": 0.8597961618300017,
+      "cv_mean_accuracy": 0.9812636416642672,
+      "cv_std_accuracy": 0.0022523989736398173,
+      "cv_mean_balanced_accuracy": 0.8816641499677114,
+      "cv_std_balanced_accuracy": 0.03126344864877692
+    },
+    "SVM": {
+      "test_accuracy": 0.13153347732181425,
+      "test_balanced_accuracy": 0.41567478658140883,
+      "cv_mean_accuracy": 0.1524303575104132,
+      "cv_std_accuracy": 0.011486834832458775,
+      "cv_mean_balanced_accuracy": 0.5089711941526454,
+      "cv_std_balanced_accuracy": 0.027405857727939114
+    },
+    "NeuralNetwork": {
+      "test_accuracy": 0.8317494600431965,
+      "test_balanced_accuracy": 0.5090989478548933,
+      "cv_mean_accuracy": 0.7858540488442927,
+      "cv_std_accuracy": 0.013317031961871041,
+      "cv_mean_balanced_accuracy": 0.43691256538887946,
+      "cv_std_balanced_accuracy": 0.04069945358792381
+    }
+  }
+}

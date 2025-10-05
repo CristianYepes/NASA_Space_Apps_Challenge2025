@@ -2,12 +2,17 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
-  top: 0;
+  top: 6rem; /* baja un poco el planeta para no tapar el subtítulo */
   left: 0;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Ajusta la altura para compensar el desplazamiento hacia abajo */
+.planet-container {
+  height: calc(100vh - 6rem);
 }
 
 .planet-container canvas {
@@ -70,12 +75,14 @@
 
 @media (max-width: 768px) {
   .planet-container {
-    height: 800px;
+    top: 5rem;
+    height: calc(100vh - 5rem);
   }
 }
 
 @media (max-width: 480px) {
   .planet-container {
-    height: 700px;
+    top: 4rem;
+    height: calc(100vh - 4rem);
   }
 }
