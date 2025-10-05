@@ -65,23 +65,35 @@ const Planet3DGLB: React.FC<Planet3DGLBProps> = ({
           __html: `
             <model-viewer
               src="${getPlanetPath(planetType)}"
-              alt="${planetType} 3D model"
-              style="width: 100%; height: 100%; --poster-color: transparent; display: block; margin: 0 auto; transform-origin: center center; object-fit: contain;"
+              alt="${planetType} 3D model from NASA Space Apps Challenge"
+              style="width: 100%; height: 100%; --poster-color: transparent; display: block; margin: 0 auto; transform-origin: center center; object-fit: contain; --progress-bar-color: #4a90e2; --progress-mask: #ffffff;"
               camera-controls
               touch-action="pan-y"
               shadow-intensity="${shadowIntensity}"
-              ${environmentImage ? `environment-image="${environmentImage}"` : ''}
-              min-camera-orbit="auto auto 25"
-              max-camera-orbit="auto auto 200"
+              shadow-softness="0.2"
+              exposure="2.0"
+              tone-mapping="aces"
+              ${environmentImage ? `environment-image="${environmentImage}"` : 'environment-image="https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k_HDR.jpg"'}
+              min-camera-orbit="auto auto 5m"
+              max-camera-orbit="auto auto 100m"
               camera-orbit="${cameraOrbit}"
               field-of-view="${fieldOfView}"
               camera-target="0m 0m 0m"
-              interaction-policy="allow-when-focused"
-              auto-rotate-delay="0"
+              interaction-policy="always-allow"
+              auto-rotate-delay="1000"
               ${autoRotate ? 'auto-rotate' : ''}
-              rotation-per-second="${rotationSpeed}rad"
-              rotation-axis="0 1 0"
-              rotation-origin="0 0 0"
+              rotation-per-second="${rotationSpeed * 30}deg"
+              interpolation-decay="200"
+              loading="eager"
+              reveal="auto"
+              ar
+              ar-modes="webxr scene-viewer quick-look"
+              ar-scale="fixed"
+              disable-zoom="false"
+              disable-pan="false"
+              disable-tap="false"
+              animation-name=""
+              animation-crossfade-duration="300"
             ></model-viewer>
           `
         }}

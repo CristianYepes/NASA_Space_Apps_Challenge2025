@@ -6,6 +6,7 @@
   justify-content: center;
   overflow: hidden;
   background: radial-gradient(ellipse at center, #1e3c72 0%, #2a5298 25%, #1a1a2e 50%, #16213e 75%, #0f0f23 100%);
+  z-index: 1000;
 }
 
 .stars, .twinkling {
