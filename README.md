@@ -68,6 +68,13 @@ Automatically identify the most promising exoplanets for the search for life, co
 - 📊 **Performance metrics** for each model
 - 🎯 **5-category classification** by priority
 
+## ⚡ **DEPLOY FRONTEND**
+
+### **Minimum Requirements**
+- npm install
+- npm start
+
+---
 
 
 ## ⚡ **QUICK INSTALLATION**
