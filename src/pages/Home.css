@@ -1,0 +1,269 @@
+.home {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+  color: white;
+}
+
+.planet-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, #4a90e2, #7b68ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-description {
+  text-align: center;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 3rem;
+}
+
+.planet-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+.planet-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.planet-view {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.planet-view:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.planet-view h3 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.planet-view .planet-container {
+  flex: 1;
+  height: 400px;
+}
+
+.planet-display {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.planet-display model-viewer {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  transform: translateY(0) !important;
+}
+
+.planet-selection {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.planet-selection h3 {
+  margin-bottom: 1.5rem;
+  color: #4a90e2;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.radio-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.radio-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(74, 144, 226, 0.3);
+  transform: translateY(-2px);
+}
+
+.radio-option input[type="radio"] {
+  display: none;
+}
+
+.radio-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  position: relative;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom {
+  border-color: #4a90e2;
+  background: linear-gradient(45deg, #4a90e2, #7b68ee);
+  box-shadow: 0 0 15px rgba(74, 144, 226, 0.5);
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-label {
+  color: #4a90e2;
+  font-weight: 600;
+}
+
+.radio-label {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+
+@media (max-width: 768px) {
+  .planet-gallery {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .planet-view {
+    height: 650px;
+  }
+  
+  .planet-view .planet-container {
+    height: 550px;
+  }
+  
+  .planet-display {
+    height: 700px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-description {
+    font-size: 1rem;
+  }
+  
+  .radio-group {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .radio-option {
+    padding: 0.5rem 1rem;
+  }
+  
+  .radio-label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .planet-view {
+    height: 600px;
+  }
+  
+  .planet-view .planet-container {
+    height: 500px;
+  }
+  
+  .planet-display {
+    height: 600px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .radio-group {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .radio-option {
+    padding: 0.75rem 1rem;
+    justify-content: center;
+  }
+  
+  .radio-label {
+    font-size: 0.95rem;
+  }
+}
