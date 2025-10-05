@@ -1,0 +1,444 @@
+.home {
+  background: transparent;
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+}
+
+.hero-planet-section {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: transparent;
+}
+
+.hero-content {
+  max-width: 1400px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+  text-align: center;
+}
+
+.with-aside {
+  grid-template-columns: 1fr;
+}
+
+.header-content {
+  text-align: center;
+  z-index: 4;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+}
+
+.header-title {
+  font-size: 4rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease-in-out infinite;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.header-subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.content-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.selection-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-left: -1rem; /* mueve la card ligeramente a la izquierda */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-description {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  text-align: center;
+  margin-bottom: 3rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.planet-showcase {
+  display: grid;
+  grid-template-columns: 480px 1fr; /* más anchura para separar la card del planeta */
+  gap: 3rem;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.content-with-aside {
+  display: block;
+}
+
+.main-column { width: 100%; padding-right: 440px; }
+
+.ranking-aside {
+  position: fixed;
+  top: 10rem;
+  right: 2rem;
+  width: 400px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 1rem;
+  max-height: calc(100vh - 12rem);
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  z-index: 300;
+}
+
+.ranking-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+}
+
+.ranking-table-wrapper {
+  overflow: auto;
+  max-height: calc(100vh - 14rem);
+}
+
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.ranking-table th,
+.ranking-table td {
+  padding: 0.75rem 0.75rem; /* mayor altura */
+  line-height: 1.6;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ranking-table th {
+  cursor: default;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, rgba(102,126,234,0.25), rgba(118,75,162,0.25));
+  color: #ffffff;
+}
+
+.ranking-table .top-row { background: rgba(102, 126, 234, 0.18); font-weight: 600; }
+
+/* Media Queries para responsive */
+@media (max-width: 1400px) {
+  .hero-content {
+    gap: 3rem;
+    padding: 1rem;
+  }
+  .main-column { padding-right: 0; }
+  /* En pantallas medianas el aside deja de ser fixed para no superponerse */
+  .ranking-aside { position: static; right: auto; width: 100%; max-height: none; margin: 1rem 0 0 0; }
+  
+  .header-content {
+    margin-bottom: 2rem;
+    padding: 1rem 0;
+  }
+  
+  .header-title {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+  }
+  
+  .header-subtitle {
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    margin-bottom: 1.5rem;
+  }
+  
+  .planet-showcase {
+    grid-template-columns: 1fr; /* apilado */
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+  
+  .planet-selection {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .planet-display {
+    height: 60vh;
+  }
+}
+
+.planet-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.planet-view {
+  background: transparent;
+  border-radius: 0;
+  padding: 0.5rem;
+  border: none;
+  transition: transform 0.3s ease;
+  height: auto;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.planet-view:hover {
+  transform: scale(1.02);
+}
+
+.planet-view h3 {
+  color: #ffffff;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.planet-view .planet-container {
+  flex: 1;
+  height: clamp(300px, 50vh, 600px);
+  width: 100%;
+}
+
+.planet-display {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  border: none;
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  position: relative;
+  z-index: 15;
+}
+
+.planet-display model-viewer {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  transform: translateY(0) !important;
+}
+
+.planet-selection {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  position: sticky;
+  top: 2rem;
+  z-index: 200;
+}
+
+.planet-selection h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  color: white;
+  text-align: center;
+  white-space: normal; /* mostrar nombre completo */
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.75rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.radio-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.radio-option input[type="radio"] {
+  display: none;
+}
+
+.radio-custom {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  margin-right: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom {
+  border-color: #667eea;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+}
+
+.radio-option input[type="radio"]:checked ~ .radio-label {
+  color: #4a90e2;
+  font-weight: 600;
+}
+
+.radio-label {
+  font-size: 1rem;
+  color: white;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .planet-gallery {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .planet-view {
+    height: 650px;
+  }
+  
+  .planet-view .planet-container {
+    height: 550px;
+  }
+  
+  .planet-display {
+    height: 700px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-description {
+    font-size: 1rem;
+  }
+  
+  .radio-group {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .radio-option {
+    padding: 0.5rem 1rem;
+  }
+  
+  .radio-label {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .planet-view {
+    height: 600px;
+  }
+  
+  .planet-view .planet-container {
+    height: 500px;
+  }
+  
+  .planet-display {
+    height: 600px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .radio-group {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .radio-option {
+    padding: 0.75rem 1rem;
+    justify-content: center;
+  }
+  
+  .radio-label {
+    font-size: 0.95rem;
+  }
+}

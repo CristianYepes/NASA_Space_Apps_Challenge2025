@@ -1,0 +1,88 @@
+.planet-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 6rem; /* baja un poco el planeta para no tapar el subtítulo */
+  left: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ajusta la altura para compensar el desplazamiento hacia abajo */
+.planet-container {
+  height: calc(100vh - 6rem);
+}
+
+.planet-container canvas {
+  border-radius: 15px;
+}
+
+.planet-container model-viewer {
+  border-radius: 15px;
+  --poster-color: transparent;
+  --progress-bar-color: #4a90e2;
+  --progress-mask: #ffffff;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  width: 100% !important;
+  height: 100% !important;
+  transform-origin: center center;
+  /* Mejoras para la visualización */
+  --min-hotspot-opacity: 0.8;
+  --max-hotspot-opacity: 1;
+  --focus-visible-outline: 2px solid #4a90e2;
+}
+
+/* Mejoras para la carga y transiciones */
+.planet-container model-viewer::part(default-progress-mask) {
+  background: linear-gradient(90deg, #4a90e2 0%, #7b68ee 100%);
+}
+
+.planet-container model-viewer::part(default-progress-bar) {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+
+/* Estilos para AR y controles mejorados */
+.planet-container model-viewer button[slot="ar-button"] {
+  background: linear-gradient(135deg, #4a90e2, #7b68ee);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.planet-container model-viewer button[slot="ar-button"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+}
+
+.planet-container div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .planet-container {
+    top: 5rem;
+    height: calc(100vh - 5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .planet-container {
+    top: 4rem;
+    height: calc(100vh - 4rem);
+  }
+}
